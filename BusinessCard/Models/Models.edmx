@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BCDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="hashPassword" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Card">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="clientId" Type="int" Nullable="false" />
+          <Property Name="companyName" Type="nvarchar" MaxLength="100" />
+          <Property Name="location" Type="nvarchar" MaxLength="100" />
+          <Property Name="jobTitle" Type="nvarchar" MaxLength="100" />
+          <Property Name="logoPath" Type="nvarchar" MaxLength="500" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="clientId" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="companyName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="location" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="jobTitle" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="logoPath" Type="int" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="BCDBModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Card" EntityType="Self.Card" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BCDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="hashPassword" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Card">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="clientId" Type="Int32" Nullable="false" />
+          <Property Name="companyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="jobTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="logoPath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="clientId" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="companyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="location" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="jobTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="logoPath" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="BCDBEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="Cards" EntityType="Self.Card" />
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BCDBModelStoreContainer" CdmEntityContainer="BCDBEntities3">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="BCDBModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="hashPassword" ColumnName="hashPassword" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cards">
+            <EntityTypeMapping TypeName="BCDBModel.Card">
+              <MappingFragment StoreEntitySet="Card">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="clientId" ColumnName="clientId" />
+                <ScalarProperty Name="companyName" ColumnName="companyName" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="jobTitle" ColumnName="jobTitle" />
+                <ScalarProperty Name="logoPath" ColumnName="logoPath" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="BCDBModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="clientId" ColumnName="clientId" />
+                <ScalarProperty Name="companyName" ColumnName="companyName" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="jobTitle" ColumnName="jobTitle" />
+                <ScalarProperty Name="logoPath" ColumnName="logoPath" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="BCDBModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

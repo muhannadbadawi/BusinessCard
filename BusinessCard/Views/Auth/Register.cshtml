@@ -1,0 +1,137 @@
+﻿@model BusinessCard.Models.Client
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- Font Awesome CDN -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: transparent;
+            border: none;
+            font-size: 1.5rem;
+            color: #333333;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+            .back-button:hover {
+                color: #5e7a7d;
+            }
+
+        .form-container {
+            background: #ffffff;
+            width: 100%;
+            max-width: 500px;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+            .form-container h2 {
+                text-align: center;
+                margin-bottom: 10px; /* More space below the heading */
+                color: #333333;
+            }
+
+            .form-container label {
+                font-weight: 500;
+                color: #333333;
+            }
+
+            .form-container input {
+                width: 100%;
+                padding: 10px 0 10px 2px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                font-size: 1rem;
+                margin-bottom: 20px; /* Increased margin below labels */
+                transition: border-color 0.3s ease;
+            }
+
+                .form-container input:focus {
+                    border-color: #5e7a7d;
+                    outline: none;
+                }
+
+            .form-container button {
+                width: 100%;
+                padding: 10px;
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                border-radius: 4px;
+                font-size: 16px;
+                cursor: pointer;
+                margin-top: 10px;
+            }
+
+                .form-container button:hover {
+                    background-color: #0056b3;
+                }
+
+        .error {
+            color: #e74c3c;
+            font-size: 0.875rem;
+            margin-top: -8px;
+            margin-bottom: 15px; /* Added margin to separate error messages */
+        }
+    </style>
+</head>
+<body>
+    <!-- Back Button -->
+    <button class="back-button" onclick="window.history.back();">
+        <i class="fas fa-arrow-left"></i>
+    </button>
+
+    <div class="form-container">
+        <h2>Register Now</h2>
+        @using (Html.BeginForm("Register", "Auth", FormMethod.Post))
+        {
+            <label>Email</label>
+            @Html.TextBoxFor(m => m.email, new { placeholder = "Enter your email" })
+            @Html.ValidationMessageFor(m => m.email, null, new { @class = "error" })
+
+            <label>Phone</label>
+            @Html.TextBoxFor(m => m.phone, new { placeholder = "Enter your phone number" })
+            @Html.ValidationMessageFor(m => m.phone, null, new { @class = "error" })
+
+            <label>Username</label>
+            @Html.TextBoxFor(m => m.username, new { placeholder = "Choose a username" })
+            @Html.ValidationMessageFor(m => m.username, null, new { @class = "error" })
+
+            <label>Name</label>
+            @Html.TextBoxFor(m => m.name, new { placeholder = "Enter your full name" })
+            @Html.ValidationMessageFor(m => m.name, null, new { @class = "error" })
+
+            <label>Password</label>
+            @Html.PasswordFor(m => m.hashPassword, new { placeholder = "Enter a secure password" })
+            @Html.ValidationMessageFor(m => m.hashPassword, null, new { @class = "error" })
+
+            <button type="submit">Register</button>
+        }
+    </div>
+</body>
+</html>
