@@ -45,7 +45,9 @@ namespace BusinessCard.Controllers
                             }
                             else
                             {
-                                return RedirectToAction("Index", "Admin", admin);
+                                admin.lastLogin = DateTime.Now;
+                                var LoginAdmin = EditAdmin(admin);
+                                return RedirectToAction("Index", "Admin", LoginAdmin);
                             }
                         }
 
@@ -75,7 +77,11 @@ namespace BusinessCard.Controllers
             }
             catch (Exception ex) 
             {
-            
+                // Log the exception
+                Console.WriteLine(ex.Message);
+                // Optionally, add user-friendly feedback
+                ViewBag.ErrorMessage = "An error occurred during login. Please try again.";
+                return View();
             }
             return View();
         }
@@ -117,6 +123,11 @@ namespace BusinessCard.Controllers
                 return Convert.ToBase64String(sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password)));
             }
         }
-
+        public Admin EditAdmin(Admin admin)
+        {
+            db.Entry(admin).State = EntityState.Modified;
+            db.SaveChanges();
+            return admin;
+        }
     }
 }

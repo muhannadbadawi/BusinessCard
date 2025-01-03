@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,7 +15,14 @@ namespace BusinessCard.Controllers
         // GET: Admin
         public ActionResult Index(Admin admin)
         {
-            return View(admin);
+            var clientCount = db.Clients.Count();
+            var cardCount = db.Cards.Count();
+            AuthenticatedAdmin authenticatedAdmin = new AuthenticatedAdmin();
+            authenticatedAdmin.admin = admin;
+            authenticatedAdmin.clientCount = clientCount.ToString();
+            authenticatedAdmin.cardCount = cardCount.ToString();
+
+            return View(authenticatedAdmin);
         }
         public ActionResult Logout()
         {
@@ -37,6 +45,24 @@ namespace BusinessCard.Controllers
             var clients = db.Clients.ToArray();
             return View("Clients", clients);
         }
+        public ActionResult EditClient(Client client)
+        {
+            var myClient = db.Clients.Find(client.Id);
+            if (myClient == null)
+            {
+                return View("Error");
+            }
+            return View(myClient);
+        }
+        [HttpPost]
+        public ActionResult Edit(Client client)
+        {
+             db.Entry(client).State = EntityState.Modified;
+             db.SaveChanges();
 
+            var clients = db.Clients.ToArray();
+
+            return View("Clients", clients);
+        }
     }
 }

@@ -18,5 +18,6 @@ namespace BusinessCard.Models
         public string username { get; set; }
         public string hashPassword { get; set; }
         public string name { get; set; }
+        public Nullable<System.DateTime> lastLogin { get; set; }
     }
 }

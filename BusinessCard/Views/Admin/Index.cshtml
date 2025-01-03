@@ -1,4 +1,4 @@
-﻿@model BusinessCard.Models.Admin
+﻿@model BusinessCard.Models.AuthenticatedAdmin
 
 @{
     Layout = null;
@@ -162,33 +162,29 @@
     </nav>
     <div class="content">
         <div class="info-section">
-            <h1>Welcome to Your Dashboard</h1>
+            <h1>Welcome, @Model.admin.name!</h1>
+            <p>Your role: Admin</p>
+            <p>Last login: @Model.admin.lastLogin</p>
+        </div>
+
+        <div class="info-section">
             <p>Monitor your business metrics and manage operations efficiently.</p>
         </div>
         <div class="circle-container">
             <div class="circle-counter">
                 <div class="circle">
-                    <p>255</p>
+                    <p>@Model.clientCount</p>
                     <span>Clients</span>
                 </div>
             </div>
             <div class="circle-counter">
                 <div class="circle">
-                    <p>684</p>
+                    <p>@Model.cardCount</p>
                     <span>Cards</span>
                 </div>
             </div>
         </div>
-        <div class="extra-info">
-            <div class="stat">
-                <h3>New Clients This Month</h3>
-                <p>129</p>
-            </div>
-            <div class="stat">
-                <h3>Cards Issued Today</h3>
-                <p>72</p>
-            </div>
-        </div>
+
     </div>
 </body>
 </html>
