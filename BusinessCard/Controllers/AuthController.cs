@@ -69,7 +69,9 @@ namespace BusinessCard.Controllers
                             }
                             else
                             {
-                                return RedirectToAction("Index", "Client", client);
+                                client.lastLogin = DateTime.Now;
+                                var LoginClient = EditClient(client);
+                                return RedirectToAction("Index", "Client", LoginClient);
                             }
                         }
                     }
@@ -128,6 +130,12 @@ namespace BusinessCard.Controllers
             db.Entry(admin).State = EntityState.Modified;
             db.SaveChanges();
             return admin;
+        }
+        public Client EditClient(Client client)
+        {
+            db.Entry(client).State = EntityState.Modified;
+            db.SaveChanges();
+            return client;
         }
     }
 }

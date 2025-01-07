@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2f42b8e615f8463bada626901faa61df" Name="Diagram1">
+      <Diagram DiagramId="1161ab1cf81f484080dd468b0e99b238" Name="Diagram1">
         <EntityTypeShape EntityType="BCDBModel.Admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BCDBModel.Card" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BCDBModel.Client" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />

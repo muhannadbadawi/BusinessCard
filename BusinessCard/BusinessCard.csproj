@@ -126,6 +126,7 @@
       <DependentUpon>DBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AuthenticatedAdmin.cs" />
+    <Compile Include="Models\AuthenticatedClient.cs" />
     <Compile Include="Models\Card.cs">
       <DependentUpon>DBModels.tt</DependentUpon>
     </Compile>
@@ -171,6 +172,9 @@
     <Content Include="Views\Auth\Register.cshtml" />
     <Content Include="Views\Admin\Clients.cshtml" />
     <Content Include="Views\Admin\EditClient.cshtml" />
+    <Content Include="Views\Client\NewCard.cshtml" />
+    <Content Include="Views\Client\ShowCard.cshtml" />
+    <Content Include="Views\Admin\ShowCards.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -178,7 +182,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="images\" />
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

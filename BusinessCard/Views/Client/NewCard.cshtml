@@ -1,0 +1,127 @@
+﻿@model BusinessCard.Models.Card
+
+@{
+    Layout = null; // Update this to use your application's layout file if necessary
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add New Card</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+        .cancel-link {
+            text-align: center;
+            margin-top: 10px;
+            display: block;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+            .cancel-link:hover {
+                text-decoration: underline;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add New Card</h1>
+        @using (Html.BeginForm("CreateCard", "Client", FormMethod.Post, new {enctype = "multipart/form-data"}))
+        {
+            @Html.HiddenFor(c => c.clientId)
+
+            <div>
+                <label for="companyName">Company Name</label>
+                @Html.TextBoxFor(model => model.companyName)
+            </div>
+
+            <div>
+                <label for="location">Location</label>
+                @Html.TextBoxFor(model => model.location)
+            </div>
+
+            <div>
+                <label for="jobTitle">Job Title</label>
+                @Html.TextBoxFor(model => model.jobTitle)
+            </div>
+
+            <div>
+                <label for="email">Email</label>
+                @Html.TextBoxFor(model => model.email)
+            </div>
+
+            <div>
+                <label for="phone">Phone</label>
+                @Html.TextBoxFor(model => model.phone)
+            </div>
+            <div>
+                <label for="logiPath">logiPath</label>
+                <input type="file" name="file" />
+            </div>
+            <button type="submit">Save Card</button>
+        }
+
+        <a href="/Client/Dashboard" class="cancel-link">Cancel</a>
+    </div>
+</body>
+</html>

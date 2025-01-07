@@ -1,4 +1,4 @@
-﻿@model List<BusinessCard.Models.Client>
+﻿@model List<BusinessCard.Models.Card>
 
 @{
     Layout = null;
@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Clients</title>
+    <title>Cards</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- Font Awesome CDN -->
 
     <style>
@@ -17,6 +17,24 @@
             font-family: 'Roboto', sans-serif;
             background-color: #f4f5f7;
         }
+        .container {
+            padding:20px
+        }
+        .back-button {
+            position: relative;
+            top:10px;
+            left:10px;
+            background-color: transparent;
+            border: none;
+            font-size: 1.5rem;
+            color: #333333;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+            .back-button:hover {
+                color: #5e7a7d;
+            }
 
         .navbar {
             background-color: #1a1a2e;
@@ -28,53 +46,34 @@
             box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        .navbar .logo {
-            font-size: 22px;
-            font-weight: bold;
-        }
+            .navbar .logo {
+                font-size: 22px;
+                font-weight: bold;
+            }
 
-        .navbar .nav-links {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
+            .navbar .nav-links {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+            }
 
-        .navbar .nav-links li {
-            margin-left: 20px;
-        }
+                .navbar .nav-links li {
+                    margin-left: 20px;
+                }
 
-        .navbar .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
-            transition: color 0.3s ease;
-        }
+                .navbar .nav-links a {
+                    color: white;
+                    text-decoration: none;
+                    font-weight: bold;
+                    font-size: 14px;
+                    transition: color 0.3s ease;
+                }
 
-        .navbar .nav-links a:hover {
-            color: #e94560;
-        }
+                    .navbar .nav-links a:hover {
+                        color: #e94560;
+                    }
 
-        .container {
-            padding: 20px
-        }
-
-        .back-button {
-            position: relative;
-            top: 10px;
-            left: 10px;
-            background-color: transparent;
-            border: none;
-            font-size: 1.5rem;
-            color: #333333;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .back-button:hover {
-            color: #5e7a7d;
-        }
 
         h1 {
             color: #333;
@@ -108,10 +107,10 @@
             border: 1px solid #ddd;
         }
 
-        td a {
-            color: blue;
-            text-decoration: none
-        }
+            td a {
+                color: blue;
+                text-decoration: none
+            }
     </style>
 </head>
 <body>
@@ -128,38 +127,28 @@
     </button>
     <div class="container">
 
-        <h1>Clients</h1>
+        <h1>Cards</h1>
         @if (Model != null && Model.Any())
         {
             <table border="1" cellpadding="5" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
-                        <th>Username</th>
-                        <th>Last Login</th>
-                        <th>Actions</th>
+                        <th>Company Name</th>
+                        <th>Job Title</th>
+                        <th>Location</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var client in Model)
+                    @foreach (var card in Model)
                     {
                         <tr>
-                            <td>@client.name</td>
-                            <td>@client.email</td>
-                            <td>@client.phone</td>
-                            <td>@client.username</td>
-                            @if (client.lastLogin != null)
-                            {
-                                <td>@client.lastLogin.Value.ToString("yyyy-MM-dd | HH:mm")</td>
-                            }
-                            else
-                            {
-                                <td>Never</td>
-                            }
-                            <td>@Html.ActionLink("Edit", "EditClient", client) | @Html.ActionLink("Delete", "DeleteClient", client) | @Html.ActionLink("Show Cards", "ShowCards", client)</td>
-
+                            <td>@card.email</td>
+                            <td>@card.phone</td>
+                            <td>@card.companyName</td>
+                            <td>@card.jobTitle</td>
+                            <td>@card.location</td>
                         </tr>
                     }
                 </tbody>

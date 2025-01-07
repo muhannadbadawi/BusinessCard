@@ -30,7 +30,7 @@ namespace BusinessCard.Controllers
         }
         public ActionResult Clients()
         {
-            var clients = db.Clients.ToArray();
+            var clients = db.Clients.ToList();
             return View(clients);
         }
         public ActionResult DeleteClient(Client client)
@@ -63,6 +63,11 @@ namespace BusinessCard.Controllers
             var clients = db.Clients.ToArray();
 
             return View("Clients", clients);
+        }
+        public ActionResult ShowCards(Client client)
+        {
+            var cards = db.Cards.Where(c => c.clientId == client.Id).ToList();
+            return View(cards);
         }
     }
 }

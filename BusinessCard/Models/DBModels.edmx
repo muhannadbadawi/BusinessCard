@@ -19,7 +19,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="clientId" Type="int" Nullable="false" />
           <Property Name="companyName" Type="nvarchar" MaxLength="100" />
           <Property Name="location" Type="nvarchar" MaxLength="100" />
@@ -38,6 +38,7 @@
           <Property Name="hashPassword" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="username" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="lastLogin" Type="datetime" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -72,7 +73,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="clientId" Type="Int32" Nullable="false" />
           <Property Name="companyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -91,6 +92,7 @@
           <Property Name="hashPassword" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lastLogin" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -146,6 +148,7 @@
                 <ScalarProperty Name="hashPassword" ColumnName="hashPassword" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="lastLogin" ColumnName="lastLogin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

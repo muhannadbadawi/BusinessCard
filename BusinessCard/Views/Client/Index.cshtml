@@ -1,19 +1,216 @@
-﻿@model BusinessCard.Models.Client
+﻿@model BusinessCard.Models.AuthenticatedClient
 
 @{
-    Layout = null;
+    Layout = null; // Update this to use your application's layout file, if any
 }
 
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+            .header h1 {
+                margin-bottom: 10px;
+                font-size: 2.5rem;
+            }
+
+            .header p {
+                color: #666;
+                font-size: 1.2rem;
+            }
+
+        .navbar {
+            background-color: #1a1a2e;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+            .navbar .logo {
+                font-size: 22px;
+                font-weight: bold;
+            }
+
+            .navbar .nav-links {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+            }
+
+                .navbar .nav-links li {
+                    margin-left: 20px;
+                }
+
+                .navbar .nav-links a {
+                    color: white;
+                    text-decoration: none;
+                    font-weight: bold;
+                    font-size: 14px;
+                    transition: color 0.3s ease;
+                }
+
+                    .navbar .nav-links a:hover {
+                        color: #e94560;
+                    }
+        .card {
+            background: #f4f4f4;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 6px;
+        }
+
+            .card h2 {
+                margin-bottom: 15px;
+            }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+            table th, table td {
+                padding: 12px 15px;
+                text-align: left;
+                border: 1px solid #ddd;
+            }
+
+            table th {
+                background-color: #f1f1f1;
+                color: #555;
+            }
+
+            table tr:nth-child(odd) {
+                background-color: #f9f9f9;
+            }
+
+            table tr:hover {
+                background-color: #f1f1f1;
+            }
+
+        .no-cards {
+            color: #777;
+            font-style: italic;
+        }
+
+        .actionsContainer a {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #007bff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .actionsContainer a:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-container {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-    <div> 
-        @Model.name
+
+    <nav class="navbar">
+        <div class="logo">Business Dashboard</div>
+        <ul class="nav-links">
+            <li>@Html.ActionLink("Home", "Index", Model.client)</li>
+            <li>@Html.ActionLink("Profile", "Profile")</li>
+            <li>@Html.ActionLink("Logout", "Logout")</li>
+        </ul>
+    </nav>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Welcome, @Model.client.name!</h1>
+            <p>Here's a summary of your account and business cards.</p>
+        </div>
+
+        <!-- Client Information -->
+        <div class="card">
+            <h2>Client Information</h2>
+            <p><strong>Email:</strong> @Model.client.email</p>
+            <p><strong>Phone:</strong> @Model.client.phone</p>
+            <p><strong>Last Login:</strong> @Model.client.lastLogin</p>
+        </div>
+
+        <!-- Business Cards -->
+        <div class="card">
+            <h2>Your Business Cards</h2>
+            <!-- Add New Card Button -->
+            <div class="btn-container actionsContainer">
+                @Html.ActionLink("Add New Card", "NewCard", Model.client)
+            </div>
+
+            @if (Model.cards != null && Model.cards.Any())
+            {
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Company Name</th>
+                            <th>Location</th>
+                            <th>Job Title</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var card in Model.cards)
+                        {
+                            <tr>
+                                <td>@card.companyName</td>
+                                <td>@card.location</td>
+                                <td>@card.jobTitle</td>
+                                <td>@card.email</td>
+                                <td>@card.phone</td>
+                                <td class="actionsContainer">@Html.ActionLink("Delete", "DeleteCard", card)  @Html.ActionLink("Edit", "EditCard", card)  @Html.ActionLink("Show", "ShowCard", card)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p class="no-cards">You have no business cards available.</p>
+            }
+        </div>
     </div>
 </body>
 </html>
