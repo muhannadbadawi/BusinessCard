@@ -11,12 +11,10 @@ namespace BusinessCard.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Client
     {
         public int Id { get; set; }
-        [Required(ErrorMessage="")]
         public string email { get; set; }
         public string phone { get; set; }
         public string hashPassword { get; set; }

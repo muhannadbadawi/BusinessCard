@@ -164,8 +164,8 @@
                 <p>@Model.location</p>
                 <!-- Edit and Delete Buttons -->
                 <div class="buttons">
-                    @Html.ActionLink("Delete", "DeleteCard", new { id = Model.Id }, new { @class = "delete-btn" })
-                    @Html.ActionLink("Edit", "EditCard", new { id = Model.Id }, new { @class = "edit-btn" })
+                    @Html.ActionLink("Delete", "DeleteCard", Model , new { @class = "delete-btn" })
+                    @Html.ActionLink("Edit", "EditCard",Model , new { @class = "edit-btn" })
                 </div>
             </div>
         </div>

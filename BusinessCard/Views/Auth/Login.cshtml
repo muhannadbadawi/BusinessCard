@@ -98,10 +98,12 @@
             <div class="form-group">
                 <label for="username">Username</label>
                 @Html.TextBoxFor(input => input.username, new { placeholder = "Enter your username here" })
+                <p style="color:red"> @Html.ValidationMessageFor(u => u.username)</p>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
                 @Html.PasswordFor(input => input.password, new { placeholder = "Enter your password here" })
+                <p style="color:red"> @Html.ValidationMessageFor(u => u.password)</p>
             </div>
             <button type="submit" class="login-btn">Login</button>
             <p class="signup-link">Don't have an account?  @Html.ActionLink("Sign up", "Register")</p>

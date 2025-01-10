@@ -92,30 +92,39 @@ namespace BusinessCard.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Register(Client model)
+        public ActionResult Register(MyClient client)
         {
             if (ModelState.IsValid)
             {
-                // Hash the password (implement your hash logic here)
-                model.hashPassword = HashPassword(model.hashPassword);
                 User user = new User();
-                user.username = model.username;
-                user.type = "Client";
-                // Save the client to the database
-                db.Users.Add(user);
-                db.SaveChanges();
+                var currentUser =db.Users.Where(u => u.username == client.username).FirstOrDefault();
+                if (currentUser == null)
+                {
+                    user.username = client.username;
+                    user.type = "Client";
+                    // Save the client to the database
+                    db.Users.Add(user);
+                    db.SaveChanges();
 
-                var myUser = db.Users.Where(u => u.username == model.username).FirstOrDefault();
-                model.Id = myUser.Id;
-                db.Clients.Add(model);
-                db.SaveChanges();
+                    var model = MapClient(client);
+                    var myUser = db.Users.Where(u => u.username == client.username).FirstOrDefault();
+                    model.Id = myUser.Id;
+                    db.Clients.Add(model);
+                    db.SaveChanges();
 
-                // Redirect to a success page or login
-                return RedirectToAction("Login");
+                    // Redirect to a success page or login
+                    return RedirectToAction("Login");
+                }
+                else 
+                {
+                    ModelState.AddModelError("username", "This username already exists.");
+                    return View(client);
+                }
+
             }
 
             // Return the same view if validation fails
-            return View(model);
+            return View(client);
         }
 
         private string HashPassword(string password)
@@ -124,6 +133,17 @@ namespace BusinessCard.Controllers
             {
                 return Convert.ToBase64String(sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password)));
             }
+        }
+        private Client MapClient(MyClient myClient) 
+        {
+            Client client = new Client();
+            client.email = myClient.email;
+            client.phone = myClient.phone;
+            client.hashPassword = HashPassword(myClient.password);
+            client.username = myClient.username;
+            client.name = myClient.name;
+
+            return client;
         }
         public Admin EditAdmin(Admin admin)
         {

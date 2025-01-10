@@ -130,6 +130,7 @@
     <Compile Include="Models\Card.cs">
       <DependentUpon>DBModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MyClient.cs" />
     <Compile Include="Models\Client.cs">
       <DependentUpon>DBModels.tt</DependentUpon>
     </Compile>
@@ -175,6 +176,8 @@
     <Content Include="Views\Client\NewCard.cshtml" />
     <Content Include="Views\Client\ShowCard.cshtml" />
     <Content Include="Views\Admin\ShowCards.cshtml" />
+    <Content Include="Views\Client\EditCard.cshtml" />
+    <Content Include="Views\Client\Profile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

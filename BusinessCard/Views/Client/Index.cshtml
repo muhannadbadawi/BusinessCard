@@ -1,7 +1,7 @@
 ﻿@model BusinessCard.Models.AuthenticatedClient
 
 @{
-    Layout = null; // Update this to use your application's layout file, if any
+    Layout = null;
 }
 
 <!DOCTYPE html>
@@ -156,13 +156,11 @@
         </ul>
     </nav>
     <div class="container">
-        <!-- Header -->
         <div class="header">
             <h1>Welcome, @Model.client.name!</h1>
             <p>Here's a summary of your account and business cards.</p>
         </div>
 
-        <!-- Client Information -->
         <div class="card">
             <h2>Client Information</h2>
             <p><strong>Email:</strong> @Model.client.email</p>
@@ -170,10 +168,8 @@
             <p><strong>Last Login:</strong> @Model.client.lastLogin</p>
         </div>
 
-        <!-- Business Cards -->
         <div class="card">
             <h2>Your Business Cards</h2>
-            <!-- Add New Card Button -->
             <div class="btn-container actionsContainer">
                 @Html.ActionLink("Add New Card", "NewCard", Model.client)
             </div>

@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add New Card</title>
+    <title>Edit Card</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -84,9 +84,9 @@
 
         .cancel-button {
             color: #007bff;
-            background-color:transparent;
-            border:0;
-            cursor:pointer;
+            background-color: transparent;
+            border: 0;
+            cursor: pointer;
             text-decoration: none;
         }
 
@@ -98,9 +98,10 @@
 <body>
     <div class="container">
         <h1>Add New Card</h1>
-        @using (Html.BeginForm("CreateCard", "Client", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("Edit", "Client", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.HiddenFor(c => c.clientId)
+            @Html.HiddenFor(c => c.Id)
 
             <div>
                 <label for="companyName">Company Name</label>
@@ -130,7 +131,7 @@
                 <label for="logiPath">logiPath</label>
                 <input type="file" name="file" />
             </div>
-            <input type="submit" value="Save Card" />
+            <input type="submit" value="Save Changes" />
         }
         <div style="width: 100%; display:flex; align-items: center; justify-content: center;">
             <button onclick="window.history.back()" class="cancel-button">Cancel</button>

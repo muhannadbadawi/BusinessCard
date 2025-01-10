@@ -42,7 +42,7 @@ namespace BusinessCard.Controllers
             db.Users.Remove(myUser);
             db.SaveChanges();
 
-            var clients = db.Clients.ToArray();
+            var clients = db.Clients.ToList();
             return View("Clients", clients);
         }
         public ActionResult EditClient(Client client)
@@ -57,10 +57,12 @@ namespace BusinessCard.Controllers
         [HttpPost]
         public ActionResult Edit(Client client)
         {
-             db.Entry(client).State = EntityState.Modified;
+            client.hashPassword = HashPassword(client.hashPassword);
+
+            db.Entry(client).State = EntityState.Modified;
              db.SaveChanges();
 
-            var clients = db.Clients.ToArray();
+            var clients = db.Clients.ToList();
 
             return View("Clients", clients);
         }
@@ -69,5 +71,13 @@ namespace BusinessCard.Controllers
             var cards = db.Cards.Where(c => c.clientId == client.Id).ToList();
             return View(cards);
         }
+        private string HashPassword(string password)
+        {
+            using (var sha256 = System.Security.Cryptography.SHA256.Create())
+            {
+                return Convert.ToBase64String(sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password)));
+            }
+        }
+
     }
 }
